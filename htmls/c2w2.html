@@ -246,7 +246,7 @@ code.language-yaml {
 </ul>
 <p><img src="https://raw.githubusercontent.com/daiwk/dl.ai/master/c2/imgs/mini-batch-gradient-descent-introduction.png" alt="mini-batch-gradient-descent-introduction.png"></p>
 <p>假设有5000000个样本，那么在一个epoch中，遍历5000个mini-batch，每个mini-batch（1000个样本）中，先前向计算，然后算这1000个样本的loss，然后反向传播。</p>
-<p>注意：一个mini-batch就反射传播一次，更新一次参数，所以一个epoch就更新了5000次参数。</p>
+<p>注意：一个mini-batch就反向传播一次，更新一次参数，所以一个epoch就更新了5000次参数。</p>
 <p><img src="https://raw.githubusercontent.com/daiwk/dl.ai/master/c2/imgs/mini-batch-gradient-descent.png" alt="mini-batch-gradient-descent.png"></p>
 <h2 class="mume-header" id="12-understanding-mini-batch-gradient-descent">1.2. understanding mini-batch gradient descent</h2>
 
@@ -387,6 +387,10 @@ slice"><path d="M95 622c-2.667 0-7.167-2.667-13.5
 <p><img src="https://raw.githubusercontent.com/daiwk/dl.ai/master/c2/imgs/learning-rate-decay-other-methods.png" alt="learning-rate-decay-other-methods.png"></p>
 <h2 class="mume-header" id="110-the-problem-of-local-optima">1.10. the problem of local optima</h2>
 
+<p>在训练神经网络时，大部分loss function的梯度为0的点不是local optima，而大多是saddle point(鞍点)，即，当维度很高时，可能在某些维度是坡谷，而在另一些维度是坡峰（例如，有2w维，在这2w维全是坡谷的概率就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>2</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{2^{-20000}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.845108em;"></span><span class="strut bottom" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="base"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathrm mtight">2</span><span class="mord mathrm mtight">0</span><span class="mord mathrm mtight">0</span><span class="mord mathrm mtight">0</span><span class="mord mathrm mtight">0</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，很低的概率）</p>
+<p><img src="https://raw.githubusercontent.com/daiwk/dl.ai/master/c2/imgs/local-optima-in-nn.png" alt="local-optima-in-nn.png"></p>
+<p>可见，鞍点并不是problem，而problem在于plateaus，也就是梯度在很长一段时间里都很接近0。例如图中的蓝线，可能这段路比较平坦，所以可能会走很久才到达下面那个蓝点，之后才可以比较快地下降（红线）。所以，momentum/RMSprop/Adam就是针对这个问题进行的优化。</p>
+<p><img src="https://raw.githubusercontent.com/daiwk/dl.ai/master/c2/imgs/plateaus.png" alt="plateaus.png"></p>
 
       </div>
       <div class="md-sidebar-toc"><ul>

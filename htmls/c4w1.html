@@ -5,8 +5,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
       
       
       
@@ -401,25 +400,8 @@ code.language-yaml {
 <p><img src="../c4/imgs/why-cnns.png" alt="why-cnns.png"></p>
 
       </div>
-      <div class="md-sidebar-toc"><ul>
-<li><a href="#1-convolutional-neural-networks">1. Convolutional Neural Networks</a>
-<ul>
-<li><a href="#11-computer-vision">1.1 Computer Vision</a></li>
-<li><a href="#12-edge-detection-example">1.2 Edge Detection Example</a></li>
-<li><a href="#13-more-edge-detection">1.3 More Edge Detection</a></li>
-<li><a href="#14-padding">1.4 Padding</a></li>
-<li><a href="#15-strided-convolutions">1.5 Strided Convolutions</a></li>
-<li><a href="#16-convolutions-over-volume">1.6 Convolutions Over Volume</a></li>
-<li><a href="#17-one-layer-of-convolutional-network">1.7 One Layer of Convolutional Network</a></li>
-<li><a href="#18-simple-neural-network-example">1.8 Simple Neural Network Example</a></li>
-<li><a href="#19-pooling-layers">1.9 Pooling Layers</a></li>
-<li><a href="#110-cnn-example">1.10 CNN Example</a></li>
-<li><a href="#111-why-convolutions">1.11 Why Convolutions?</a></li>
-</ul>
-</li>
-</ul>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
+      
+      
     </body>
     
     
@@ -427,31 +409,5 @@ code.language-yaml {
     
     
     
-    <script>
-(function bindTaskListEvent() {
-  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
-  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
-    var checkbox = taskListItemCheckboxes[i]
-    var li = checkbox.parentElement
-    if (li.tagName !== 'LI') li = li.parentElement
-    if (li.tagName === 'LI') {
-      li.classList.add('task-list-item')
-    }
-  }
-}())    
-</script>
     
-<script>
-
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
-      
   </html>

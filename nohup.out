@@ -167,3 +167,5 @@
 127.0.0.1 - - [30/Jun/2018 21:25:29] "GET /c1/imgs/back-propagation-nn-vectorized-all.png HTTP/1.1" 200 -
 127.0.0.1 - - [30/Jun/2018 21:25:29] "GET /c1/imgs/if-initialize-zero.png HTTP/1.1" 200 -
 127.0.0.1 - - [30/Jun/2018 21:25:29] "GET /c1/imgs/random-initialization.png HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jul/2018 00:52:20] code 404, message File not found
+127.0.0.1 - - [01/Jul/2018 00:52:20] "GET /favicon.ico HTTP/1.1" 404 -

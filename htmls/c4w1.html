@@ -5,7 +5,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+      <link rel="stylesheet" href="file:////Users/daiwenkai/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
       
       
       
@@ -384,7 +384,7 @@ code.language-yaml {
 <p>各层的shape和size，以及参数数目如下表，可见：</p>
 <ul>
 <li>pool层没有参数</li>
-<li>conv层的参数比fc的少</li>
+<li>conv层的参数比fc的少，例如CONV1层，可见是filter的大小是5x5(本来应该是5x5x3的，可能是只要5x5，然后3个channel都用同一个5x5去搞吧~)，个数为8，所以参数有(5x5+1)x8=208</li>
 <li>随着层数的增加，activation size<strong>逐渐</strong>变小，没有『骤降』</li>
 </ul>
 <p><img src="../c4/imgs/lenet-5-params.png" alt="lenet-5-params.png"></p>

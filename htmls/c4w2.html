@@ -228,15 +228,21 @@ code.language-yaml {
 </li>
 <li><a href="#13-resnets">1.3 ResNets</a></li>
 <li><a href="#14-why-resnets-work">1.4 Why ResNets Work</a></li>
-<li><a href="#15-networks-in-networks-and-1x1-convolutions">1.5 Networks in Networks and 1x1 Convolutions</a></li>
-<li><a href="#16-inception-network-motivation">1.6 Inception Network Motivation</a></li>
+<li><a href="#15-networks-in-networks-and-1x1-convolutions%EF%BC%882013%E5%B9%B4%EF%BC%89">1.5 Networks in Networks and 1x1 Convolutions（2013年）</a></li>
+<li><a href="#16-inception-network-motivation%EF%BC%882014%E5%B9%B4%EF%BC%89">1.6 Inception Network Motivation（2014年）</a></li>
 <li><a href="#17-inception-network">1.7 Inception Network</a></li>
 </ul>
 </li>
 <li><a href="#2-practical-advices-for-using-convnets">2. Practical advices for using ConvNets</a>
 <ul>
 <li><a href="#21-using-open-source-implementation">2.1 Using Open-Source Implementation</a></li>
-<li><a href="#22-transfer-learning">2.2 Transfer Learning</a></li>
+<li><a href="#22-transfer-learning">2.2 Transfer Learning</a>
+<ul>
+<li><a href="#221-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E8%BE%83%E5%B0%8F">2.2.1 如果训练集较小</a></li>
+<li><a href="#222-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E5%BE%88%E5%A4%A7">2.2.2 如果训练集很大</a></li>
+<li><a href="#223-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E7%89%B9%E5%88%AB%E5%A4%A7">2.2.3 如果训练集特别大</a></li>
+</ul>
+</li>
 <li><a href="#23-data-augmentation">2.3 Data Augmentation</a></li>
 <li><a href="#24-state-of-computer-vision">2.4 State of Computer Vision</a></li>
 </ul>
@@ -354,22 +360,135 @@ MAX-POOL都是2x2，stride=2(刚好可以把宽度和高度缩小一半：(x-2)/
 <p><img src="../c4/imgs/why-resnet-works.png" alt="why-resnet-works.png"></p>
 <p>如何把一个plain network（普通网络）变成一个resnet呢？如图中有大量的same conv，直接变就行了。而图中的pool，输入和输出维度不同，这个时候就需要上面提到的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">W_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>了，当然也可以不加residual。</p>
 <p><img src="../c4/imgs/trans-plain-to-resnet.png" alt="trans-plain-to-resnet.png"></p>
-<h2 class="mume-header" id="15-networks-in-networks-and-1x1-convolutions">1.5 Networks in Networks and 1x1 Convolutions</h2>
+<h2 class="mume-header" id="15-networks-in-networks-and-1x1-convolutions2013%E5%B9%B4">1.5 Networks in Networks and 1x1 Convolutions（2013年）</h2>
 
-<h2 class="mume-header" id="16-inception-network-motivation">1.6 Inception Network Motivation</h2>
+<p>1x1其实就是乘了一个数，有啥用呢？</p>
+<ul>
+<li>如果channels（即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">n_C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>）=1，确实只是乘了一个数</li>
+<li>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>C</mi></msub><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n_C&gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span></span>，例如，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>C</mi></msub><mo>=</mo><mn>3</mn><mn>2</mn></mrow><annotation encoding="application/x-tex">n_C=32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">3</span><span class="mord">2</span></span></span></span>，那么相当于6x6图像中的一个32维的点接受了一个32个数的向量，分别对应相乘再相加，再过一个Relu</li>
+</ul>
+<p>所以本质上，1x1的卷积是一个全连接的神经网络，逐一作用于这6x6=36个不同的位置。这个全连接网络输入是32个数，输出filter个数个值（#filters=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>n</mi><mi>C</mi><mrow><mo>[</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>]</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">n_C^{[l+1]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.0448em;"></span><span class="strut bottom" style="height:1.338331em;vertical-align:-0.29353099999999993em;"></span><span class="base"><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0448em;"><span style="top:-2.4064690000000004em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span></span></span><span style="top:-3.2198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">[</span><span class="mord mathit mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29353099999999993em;"></span></span></span></span></span></span></span></span>），得到6x6x#filters的输出。</p>
+<p>因此，1x1卷积有时也被称作Network in Network(当然，2013年的这篇paper就叫这个名字。。)。</p>
+<p><img src="../c4/imgs/why-1x1-convs-do.png" alt="why-1x1-convs-do.png"></p>
+<p>对于一个28x28x192的输入，如果想把height和width变小，可以直接用pooling：</p>
+<ul>
+<li>如何把channels变小呢？可以用32个1x1的卷积，这样就得到了28x28x32。1x1可以减小channels数，从而减小计算量</li>
+<li>而如果使用192个1x1卷积呢？这个时候1x1的效果就是增加非线性了</li>
+</ul>
+<p><img src="../c4/imgs/using-1x1-conv.png" alt="using-1x1-conv.png"></p>
+<h2 class="mume-header" id="16-inception-network-motivation2014%E5%B9%B4">1.6 Inception Network Motivation（2014年）</h2>
 
+<p>如果输入是28x28x192，</p>
+<ul>
+<li>经过64个1x1之后，得到28x28x64(绿色部分)，</li>
+<li>经过128个3x3的same conv之后，得到28x28x128(蓝色)，把蓝色堆在绿色的上面。</li>
+<li>同样地，堆一个32个5x5的same conv，得到紫色的，堆上去</li>
+<li>当然，还可以用MAX-POOL，得到黄色的28x28x32。当然，为了维数能match(28x28)，需要对pool做padding，且stride=1</li>
+<li>最后得到的就是一个28x28x(64+128+32+32)=28x28x256</li>
+</ul>
+<p>而inception network有个缺点，就是计算成本问题。这是由图中的5x5卷积导致的。</p>
+<p><img src="../c4/imgs/motivation-for-inception-network.png" alt="motivation-for-inception-network.png"></p>
+<p>来看看上面说到的5x5的计算成本：</p>
+<p>每个filter的大小是5x5x192，输出大小是28x28x32，所以需要计算28x28x32这么多个数，而每个数，需要做5x5x192的乘法，所以总共要做的乘法有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mn>8</mn><mo>×</mo><mn>2</mn><mn>8</mn><mo>×</mo><mn>3</mn><mn>2</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>1</mn><mn>9</mn><mn>2</mn><mo>=</mo><mn>1</mn><mn>2</mn><mn>0</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">28\times 28\times 32 \times 5\times 5\times 192=120M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base"><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">2</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span>，也就是1.2亿。。。而接下来，会讲1x1卷积，能够将这个计算成本大概降低到1/10左右！！</p>
+<p><img src="../c4/imgs/inception-computation-cost.png" alt="inception-computation-cost.png"></p>
+<p>而同样地由28x28x192变成28x28x32，可以中间先接16个1x1，得到28x28x16，再接32个5x5，得到28x28x32。这个中间层，有时被称作bottleneck layer，因为很细（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">n_C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>很小咯）。。是这个网络中最小的部分。</p>
+<p>看看计算成本：</p>
+<ul>
+<li>计算bottleneck的成本：输出是28x28x16，对于每一个，需要做192次乘法，所以是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mn>8</mn><mo>×</mo><mn>2</mn><mn>8</mn><mo>×</mo><mn>1</mn><mn>6</mn><mo>×</mo><mn>1</mn><mn>9</mn><mn>2</mn><mo>=</mo><mn>2</mn><mi mathvariant="normal">.</mi><mn>4</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">28\times 28\times 16 \times 192=2.4M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base"><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">2</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">4</span><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span></li>
+<li>对于后半部分，需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mn>8</mn><mo>×</mo><mn>2</mn><mn>8</mn><mo>×</mo><mn>3</mn><mn>2</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>1</mn><mn>6</mn><mo>=</mo><mn>1</mn><mn>0</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">28\times 28\times 32 \times 5\times 5\times 16=10M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base"><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord">8</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">3</span><span class="mord">2</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span></li>
+<li>二者相加，就是12.4M，所以大概减少为原来的1/10左右</li>
+</ul>
+<p><img src="../c4/imgs/using-1x1-conv-for-5x5.png" alt="using-1x1-conv-for-5x5.png"></p>
+<p>合理地使用1x1，可以减小计算成本，并且可以尽量不对网络的最终效果造成损失。</p>
 <h2 class="mume-header" id="17-inception-network">1.7 Inception Network</h2>
 
+<p>一个inception module如下（例如，输入是28x28x192），</p>
+<ul>
+<li>和上一节讲到的一样，这里把5x5拆成了1x1和5x5，中间是16个channel</li>
+<li>对3x3也做类似的操作，1x1中间是96个channel，输出是28x28x128</li>
+<li>然后单独接一个1x1，输出28x28x64</li>
+<li>然后来个pooling，3x3，stride=1，same，得到28x28x192，可见这里的channels还是挺多的，所以加多一个1x1~得到一个28x28x32</li>
+<li>最后把上面的输出全部concat到一起，得到28x28x(64+128+32+32)=28x28x256</li>
+</ul>
+<p>所以2014年的googlenet，其实就是一系列的inception module，可能有一些block不太一样（例如图中有箭头那个，就是先pooling了一下，改变维数，再接的inception block）。</p>
+<p>还有一点值得注意的是，inception network还有一些side branches(旁枝)。因为最后是一些FC，再接一个softmax。而这些side branches是试着把一些中间层拿出来，经过一些全连接+softmax来做预测。作用是确保计算的特征值，即使在中间层，在做预测时也不会表现得太差。这其实是一种对inception network起到一种正则化的效果，避免overfitting。</p>
+<p><img src="../c4/imgs/inception-network.png" alt="inception-network.png"></p>
 <h1 class="mume-header" id="2-practical-advices-for-using-convnets">2. Practical advices for using ConvNets</h1>
 
 <h2 class="mume-header" id="21-using-open-source-implementation">2.1 Using Open-Source Implementation</h2>
 
+<p>很多神经网络的效果很难复现，因为很多超参的调整（例如学习率衰减）等很多细节都会对最终结果带来影响，所以还是从github上找开源实现吧~。。</p>
 <h2 class="mume-header" id="22-transfer-learning">2.2 Transfer Learning</h2>
 
+<p>例如需要搞一个三分类问题，可以找一个开源的实现，并把训练好的参数搞下来。</p>
+<h3 class="mume-header" id="221-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E8%BE%83%E5%B0%8F">2.2.1 如果训练集较小</h3>
+
+<p>然后把最后的softmax层（例如Imagenet就是1000分类）去掉，改成一个三分类的softmax。而前面的参数直接freeze，只训练与softmax层有关的参数。</p>
+<p>如何固定参数呢？有的框架可以设置<code>trainableParameters=0</code>之类的。</p>
+<p>也可以将前面层的当然一个固定的函数，输入一个X，计算其特征向量，把所有特征向量直接存放到磁盘中，然后拿这些向量去经过一个浅层神经网络，训练这个网络。</p>
+<h3 class="mume-header" id="222-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E5%BE%88%E5%A4%A7">2.2.2 如果训练集很大</h3>
+
+<p>可以只freeze前面的部分层，然后有几种做法：</p>
+<ul>
+<li>可以把最后几层的参数拿来初始化，然后进行训练</li>
+<li>也可以直接去掉最后几层，接自己的softmax</li>
+</ul>
+<p>如果数据越多，所freeze的层数可以越少~</p>
+<h3 class="mume-header" id="223-%E5%A6%82%E6%9E%9C%E8%AE%AD%E7%BB%83%E9%9B%86%E7%89%B9%E5%88%AB%E5%A4%A7">2.2.3 如果训练集特别大</h3>
+
+<p>甚至可以拿下载下来的权重做初始化，直接训练整个网络。</p>
+<p>在cv领域，迁移学习往往能取得很好的效果。</p>
+<p><img src="../c4/imgs/transfer-learning.png" alt="transfer-learning.png"></p>
 <h2 class="mume-header" id="23-data-augmentation">2.3 Data Augmentation</h2>
 
+<p>最常用的data augmentation如下：</p>
+<ul>
+<li>mirroring：镜像，垂直翻转</li>
+<li>random cropping：随机裁剪</li>
+</ul>
+<p>还有其他几个，不太常用：</p>
+<ul>
+<li>Rotation：旋转一定角度</li>
+<li>Shearing：剪切，使图像变形，例如图中的变成平行四边形。。</li>
+<li>Local Warping：局部弯曲</li>
+</ul>
+<p>另一种是Color shifting(色彩变化)，在R/G/B分别加上不同的扰动，图中+/-20只是为了看得更明显一点，实际的扰动可能很小。</p>
+<p>PCA（主成分分析）也可以用在色彩变化上，在Alexnet的文章中有介绍，被称为PCA色彩增强（PCA color augmentation）：如果图片是偏紫色的，也就是说R和B比较多，G较少，PCA color augmentation会对R和B做比较大的加减，而对G只做微小的变化，从而保持整体与之前有相同的着色。</p>
+<p><img src="../c4/imgs/color-shifting.png" alt="color-shifting.png"></p>
+<p>数据增强同样也有很多的超参数，所以可以直接拿开源版本的实现来搞，当然，也可以针对具体任务，自己调一下超参。</p>
 <h2 class="mume-header" id="24-state-of-computer-vision">2.4 State of Computer Vision</h2>
 
+<p>从容易获取的数据量来讲，object detection &lt; image recognition &lt; speech recognition，</p>
+<ul>
+<li>数据足够多时，用的是更简单的算法，更好的人工特征</li>
+<li>数据较少时，用的是更多的人工特征</li>
+</ul>
+<p>knowledge有两种来源：</p>
+<ul>
+<li>标注数据</li>
+<li>手工构造的feature/网络架构/其他组成部分</li>
+</ul>
+<p>在cv领域，标注数据并不多，所以经常需要设置很复杂的网络结构。object detection任务的数据比图像识别更少，所以它们的架构更复杂，而且有更多的specialized components。</p>
+<p>当然，如果数据集不够大，transfer learning是一个很好的方法。</p>
+<p>另外，如何在benchmark或者比赛中取得比较好的成绩呢？有以下几种方法（在实际工程领域并不一定有用…）：</p>
+<ul>
+<li>ensembling:
+<ul>
+<li>独立地训练一些（一般有3-15个）网络，并将他们的<strong>输出</strong>取平均。注意，是输出，不是权重</li>
+</ul>
+</li>
+<li>在test的时候使用multi-crop
+<ul>
+<li>针对test image，进行多种crop，对他们分别做预测，然后对结果求平均</li>
+</ul>
+</li>
+</ul>
+<p>使用开源代码：</p>
+<ul>
+<li>使用已published的网络架构</li>
+<li>使用开源实现</li>
+<li>使用pretrained的模型，并在你的数据集上finetune</li>
+</ul>
 
       </div>
       

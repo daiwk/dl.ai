@@ -246,3 +246,14 @@
 127.0.0.1 - - [28/Nov/2018 16:37:09] "GET /htmls/c4w3.html HTTP/1.1" 404 -
 127.0.0.1 - - [28/Nov/2018 16:37:11] code 404, message File not found
 127.0.0.1 - - [28/Nov/2018 16:37:11] "GET /htmls/c4w3.html HTTP/1.1" 404 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /htmls/c4w3.html HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/object-localization.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/fc-to-conv.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/conv-sliding-window.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/yolo-algorithm.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/iou.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/non-max-supression.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/anchor-box.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/yolo-training.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/yolo-non-max-suppression.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:40] "GET /c4/imgs/R-CNN.png HTTP/1.1" 200 -

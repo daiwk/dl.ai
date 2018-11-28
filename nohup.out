@@ -169,3 +169,80 @@
 127.0.0.1 - - [30/Jun/2018 21:25:29] "GET /c1/imgs/random-initialization.png HTTP/1.1" 200 -
 127.0.0.1 - - [01/Jul/2018 00:52:20] code 404, message File not found
 127.0.0.1 - - [01/Jul/2018 00:52:20] "GET /favicon.ico HTTP/1.1" 404 -
++ python -m CGIHTTPServer 8088
+127.0.0.1 - - [28/Oct/2018 22:53:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:22] code 404, message File not found
+127.0.0.1 - - [28/Oct/2018 22:53:22] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Oct/2018 22:53:25] "GET /htmls/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /htmls/c2w3.html HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /c2/imgs/hyperparameters.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /c2/imgs/tuning-process-try-random-values.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /c2/imgs/tuning-process-coarse-to-fine.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /c2/imgs/pick-hyperparameters-uniformly.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:40] "GET /c2/imgs/pick-hyperparameters-log-scale.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/pick-hyperparameters-exponetially-weighted-average.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/retest-hyperparameters-occatsionally.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/pick-hyperparameters-two-approaches.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-problems.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-implement.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-adding-bn-to-a-nn.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-mini-batch-bn-no-bias.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-mini-batch-gradient-descent-implementation.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/why-bn-works-shifting-input-distribution.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/why-bn-works-effect1.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/why-bn-works-effect2.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/bn-test-time.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/multi-class-classification.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/softmax-regression.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/softmax-examples.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/understanding-softmax.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/softmax-loss-function.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/gradient-descent-softmax.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/deeplearning-frameworks.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2018 22:53:41] "GET /c2/imgs/tf-code-example.png HTTP/1.1" 200 -
++ python -m CGIHTTPServer 8088
+127.0.0.1 - - [28/Nov/2018 16:35:26] "GET /htmls/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:27] code 404, message File not found
+127.0.0.1 - - [28/Nov/2018 16:35:27] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [28/Nov/2018 16:35:36] code 404, message File not found
+127.0.0.1 - - [28/Nov/2018 16:35:36] "GET /htmls/c4w3.html HTTP/1.1" 404 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /htmls/c4w2.html HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/case-study-outline.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/paper-lenet-5.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/paper-alexnet.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/paper-vgg16.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/paper-resnet.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/paper-resnet-performance.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/why-resnet-works.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/trans-plain-to-resnet.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/why-1x1-convs-do.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/using-1x1-conv.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/motivation-for-inception-network.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:40] "GET /c4/imgs/inception-computation-cost.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:41] "GET /c4/imgs/using-1x1-conv-for-5x5.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:41] "GET /c4/imgs/inception-network.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:41] "GET /c4/imgs/transfer-learning.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:35:41] "GET /c4/imgs/color-shifting.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /htmls/c4w1.html HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/vertical-edge-detection.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/vertical-edge-detection-2.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/vertical-edge-detection-3.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/vertical-edge-detection-4.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/learning-to-detect-edges.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/padding.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/valid-same-conv.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:03] "GET /c4/imgs/strided-conv.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/rgb-images-convs.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/multiple-filters.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/one-conv-layer.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/notations-conv.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/conv-nets.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/max-pooling.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:04] "GET /c4/imgs/summary-pooling.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:05] "GET /c4/imgs/lenet-5.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:05] "GET /c4/imgs/lenet-5-params.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:36:05] "GET /c4/imgs/why-cnns.png HTTP/1.1" 200 -
+127.0.0.1 - - [28/Nov/2018 16:37:09] code 404, message File not found
+127.0.0.1 - - [28/Nov/2018 16:37:09] "GET /htmls/c4w3.html HTTP/1.1" 404 -
+127.0.0.1 - - [28/Nov/2018 16:37:11] code 404, message File not found
+127.0.0.1 - - [28/Nov/2018 16:37:11] "GET /htmls/c4w3.html HTTP/1.1" 404 -
